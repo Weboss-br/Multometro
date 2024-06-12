@@ -1,0 +1,155 @@
+Projeto: Sistema de Monitoramento de Velocidade para Estrada
+
+Descrição do Projeto
+
+O objetivo deste projeto é criar um sistema que monitore a velocidade média de veículos em uma estrada de 10 km e identifique aqueles que excedem o limite de velocidade de 80 km/h. O sistema registrará as placas dos veículos em dois pontos (início e fim da estrada) e calculará a velocidade média com base no tempo gasto entre os dois pontos. Se a velocidade média exceder o limite, o sistema marcará o veículo como infrator.
+
+Principais Desafios
+Reconhecimento de Placas: Implementação de um sistema de reconhecimento de placas (OCR) que seja preciso e rápido.
+Sincronização de Dados: Garantir que os dados registrados nos pontos A e B sejam sincronizados corretamente.
+Cálculo de Velocidade Média: Implementar uma lógica precisa para calcular a velocidade média dos veículos.
+Armazenamento de Dados: Escolher um banco de dados adequado para armazenar os dados de entrada e saída dos veículos.
+Desempenho e Escalabilidade: Garantir que o sistema possa lidar com um grande volume de veículos sem perda de desempenho.
+Roadmap do Projeto
+
+Fase 1: Planejamento e Configuração Inicial
+Definição dos Requisitos: Detalhar todos os requisitos funcionais e não funcionais do sistema.
+Configuração do Ambiente de Desenvolvimento: Instalar e configurar todas as ferramentas necessárias (Python, bibliotecas, banco de dados, etc.).
+Configuração do Repositório GitHub: Criar um repositório no GitHub para o projeto.
+
+Fase 2: Desenvolvimento do Sistema de Reconhecimento de Placas
+Pesquisa e Seleção de Bibliotecas OCR: Pesquisar e escolher bibliotecas de OCR (como Tesseract) para reconhecimento de placas.
+Implementação do Reconhecimento de Placas no Ponto A: Desenvolver e testar a captura e reconhecimento de placas no ponto A.
+Implementação do Reconhecimento de Placas no Ponto B: Desenvolver e testar a captura e reconhecimento de placas no ponto B.
+
+Fase 3: Armazenamento de Dados
+Escolha do Banco de Dados: Selecionar um banco de dados (SQLite, PostgreSQL, etc.) para armazenar os dados.
+Implementação do Modelo de Dados: Criar as tabelas e relações necessárias para armazenar os dados das placas e horários.
+Integração com o Sistema de Reconhecimento de Placas: Garantir que os dados capturados pelos pontos A e B sejam armazenados corretamente no banco de dados.
+
+Fase 4: Cálculo de Velocidade Média e Identificação de Infratores
+Implementação da Lógica de Cálculo de Velocidade Média: Desenvolver a lógica para calcular a velocidade média dos veículos.
+Implementação da Lógica de Identificação de Infratores: Marcar os veículos que excedem a velocidade permitida.
+Testes e Validação: Testar o sistema com dados simulados para garantir a precisão dos cálculos.
+
+Fase 5: Interface de Usuário e Relatórios
+Desenvolvimento de uma Interface de Usuário Básica: Criar uma interface para visualizar os dados de entrada, saída e infratores.
+Implementação de Relatórios: Desenvolver relatórios que mostram estatísticas de velocidade e infrações.
+
+Fase 6: Documentação e Publicação
+Documentação do Código: Comentar e documentar todo o código para facilitar a compreensão.
+Criação de um README: Criar um README detalhado no GitHub com instruções de instalação, uso e detalhes do projeto.
+Publicação no GitHub: Garantir que todo o código, documentação e exemplos estejam disponíveis no repositório.
+
+
+Detalhes do Projeto
+Requisitos Técnicos
+Linguagem: Python
+Bibliotecas: OpenCV (para captura de imagens), Tesseract (para OCR), SQLAlchemy (para ORM), Flask/Django (para a interface web)
+Banco de Dados: SQLite (para desenvolvimento), PostgreSQL (para produção)
+
+projeto-monitoramento-velocidade/
+│
+├── README.md
+├── requirements.txt
+├── src/
+│   ├── app.py
+│   ├── models.py
+│   ├── views.py
+│   ├── controllers/
+│   ├── services/
+│   └── static/
+│       └── css/
+│       └── js/
+│   └── templates/
+│       └── index.html
+└── tests/
+    ├── test_recognition.py
+    ├── test_calculation.py
+    ├── test_database.py
+    └── test_integration.py
+
+
+Cálculos e Fórmulas:
+
+Para calcular a velocidade média, você pode usar a fórmula básica da física:
+
+Velocidade Média = Distância
+                    Tempo
+​
+ 
+
+Onde:
+
+Distância é o comprimento da estrada (10 km).
+Tempo é o intervalo de tempo que o carro levou para percorrer a estrada, em horas.
+Exemplo
+Dados:
+
+Passagem no ponto A: 12:00
+Passagem no ponto B: 12:30
+Distância: 10 km
+Cálculo do Tempo:
+
+Tempo no ponto A: 12:00
+Tempo no ponto B: 12:30
+Diferença de tempo: 12:30 - 12:00 = 30 minutos = 0.5 horas
+Cálculo da Velocidade Média:
+
+
+Velocidade Média
+
+Velocidade Média = Distância = 10 km     = 20 km/h
+                    Tempo  =   0.5 h
+
+
+Portanto, a velocidade média do carro é 20 km/h.
+
+Código em Python
+Aqui está um exemplo de como você pode implementar esse cálculo em Python:
+
+
+Conclusão - Objetivo
+Este projeto oferece uma oportunidade prática para demonstrar habilidades em Python, OCR, desenvolvimento web e manipulação de banco de dados. Além de adicionar um projeto interessante ao portfólio, ele aborda problemas reais de desempenho e escalabilidade.
+
+
+from datetime import datetime
+
+def calcular_velocidade_media(distancia_km, tempo_a, tempo_b):
+    formato_hora = "%H:%M"
+    hora_a = datetime.strptime(tempo_a, formato_hora)
+    hora_b = datetime.strptime(tempo_b, formato_hora)
+    
+    # Calculando a diferença de tempo em horas
+    diferenca_tempo = (hora_b - hora_a).total_seconds() / 3600.0
+    
+    # Calculando a velocidade média
+    velocidade_media = distancia_km / diferenca_tempo
+    return velocidade_media
+
+# Dados do exemplo
+distancia_km = 10
+tempo_a = "12:00"
+tempo_b = "12:30"
+
+velocidade_media = calcular_velocidade_media(distancia_km, tempo_a, tempo_b)
+print(f"A velocidade média do carro foi de {velocidade_media:.2f} km/h")
+
+
+Verificação de Excesso de Velocidade
+Para verificar se o carro excedeu o limite de velocidade, você pode adicionar uma verificação simples:
+
+limite_velocidade = 80  # km/h
+
+if velocidade_media > limite_velocidade:
+    print("O carro excedeu o limite de velocidade.")
+else:
+    print("O carro não excedeu o limite de velocidade.")
+
+
+Resultado Final
+Com os dados fornecidos:
+
+A velocidade média do carro é 20 km/h.
+O carro não excedeu o limite de velocidade de 80 km/h.
+Essa abordagem pode ser integrada ao seu projeto para monitorar e calcular a velocidade média dos veículos na estrada.
